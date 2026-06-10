@@ -1,0 +1,50 @@
+spec: "1.1"
+devices:
+  AgilentPowerSupply:
+    eom:
+      GPIB INSTR:
+        q: "\n"
+        r: "\n"
+    dialogues:
+      - q: "*IDN?"
+        r: "AGILENT,PSU,...."
+      - q: "OUTPUT ON"
+      - q: "OUTPUT OFF"
+    properties:
+      voltage:
+        default: 0.0
+        getter:
+          q: "VOLT?"
+          r: "{:.2f}"
+        setter:
+          q: "VOLT {:.2f}"
+        specs:
+          min: 0
+          max: 30
+          type: float
+      current:
+        default: 0.0
+        getter:
+          q: "CURR?"
+          r: "{:.3f}"
+        setter:
+          q: "CURR {:.2f}"
+        specs:
+          min: 0
+          max: 30
+          type: float
+      output:
+        default: 1.0
+        getter:
+          q: "OUTP?"
+          r: "{:.1f}"
+        setter:
+          q: "OUTP {:.0f}"
+        specs:
+          min: 0
+          max: 1
+          type: float
+
+resources:
+  GPIB::5::INSTR:
+    device: AgilentPowerSupply

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scpi_simple"
+version = "0.1.0"
+description = "A Python library for SCPI instrument control"
+requires-python = ">=3.10"
+dependencies = [
+    "pyvisa>=1.13",
+]
+
+[project.optional-dependencies]
+sim = ["pyvisa-sim>=0.6"]
+dev = ["pytest", "pyvisa-sim"]
+
+[tool.setuptools.packages.find]
+where = [".."]
+include = ["scpi_simple*"]

@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: scpi_simple
+Version: 0.1.0
+Summary: A Python library for SCPI instrument control
+Requires-Python: >=3.10
+Requires-Dist: pyvisa>=1.13
+Provides-Extra: sim
+Requires-Dist: pyvisa-sim>=0.6; extra == "sim"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pyvisa-sim; extra == "dev"
