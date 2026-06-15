@@ -1,0 +1,3 @@
+[submodule "uC-chip-interface-teensy41"]
+	path = uC-chip-interface
+	url = https://github.com/async-ic/uC-chip-interface-arduino.git
