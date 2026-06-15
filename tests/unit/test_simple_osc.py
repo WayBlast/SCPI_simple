@@ -1,9 +1,9 @@
 from unittest.mock import MagicMock, patch
 import pytest
-from ...instruments import osc
+from ...instruments import osc 
 
 @pytest.fixture
-def osc():
+def oscilloscope():
     mock_rm = MagicMock()
     mock_resource = MagicMock()
     mock_rm.open_resource.return_value = mock_resource
@@ -11,250 +11,251 @@ def osc():
 
 class TestData:
 
-    def test_data_width_set(self, osc):
-        osc.data.data_width.set(2)
-        osc.resource.write.assert_called_once_with("DATa:WIDth 2")
+    def test_data_width_set(self, oscilloscope):
+        oscilloscope.data.data_width.set(2)
+        oscilloscope.resource.write.assert_called_once_with("DATa:WIDth 2")
 
-    def test_data_width_get(self, osc):
-        osc.data.data_width.get()
-        osc.resource.query.assert_called_once_with("DATa:WIDth?")
+    def test_data_width_get(self, oscilloscope):
+        oscilloscope.data.data_width.get()
+        oscilloscope.resource.query.assert_called_once_with("DATa:WIDth?")
 
-    def test_data_width_invalid(self, osc):
+    def test_data_width_invalid(self, oscilloscope  ):
         with pytest.raises(ValueError):
-            osc.data.data_width.set(0)
+            oscilloscope.data.data_width.set(0)
 
-    def test_source_set_ch1(self, osc):
-        osc.data.source.set(1)
-        osc.resource.write.assert_called_once_with("DATa:SOURCE CH1")
+    def test_source_set_ch1(self, oscilloscope):
+        oscilloscope.data.source.set(1)
+        oscilloscope.resource.write.assert_called_once_with("DATa:SOURCE CH1")
 
-    def test_source_set_ch4(self, osc):
-        osc.data.source.set(4)
-        osc.resource.write.assert_called_once_with("DATa:SOURCE CH4")
+    def test_source_set_ch4(self, oscilloscope):
+        oscilloscope.data.source.set(4)
+        oscilloscope.resource.write.assert_called_once_with("DATa:SOURCE CH4")
 
-    def test_source_get(self, osc):
-        osc.data.source.get()
-        osc.resource.query.assert_called_once_with("DATa:SOURCE?")
+    def test_source_get(self, oscilloscope):
+        oscilloscope.data.source.get()
+        oscilloscope.resource.query.assert_called_once_with("DATa:SOURCE?")
 
-    def test_source_invalid(self, osc):
+    def test_source_invalid(self, oscilloscope):
         with pytest.raises(ValueError):
-            osc.data.source.set(5)
+            oscilloscope.data.source.set(5)
 
-    def test_encoding_set_ascii(self, osc):
-        osc.data.encoding.set("ascii")
-        osc.resource.write.assert_called_once_with("DATa:ENCDG ASCI")
+    def test_encoding_set_ascii(self, oscilloscope):
+        oscilloscope.data.encoding.set("ascii")
+        oscilloscope.resource.write.assert_called_once_with("DATa:ENCDG ASCI")
 
-    def test_encoding_set_ribinary(self, osc):
-        osc.data.encoding.set("ribinary")
-        osc.resource.write.assert_called_once_with("DATa:ENCDG RIBINARY")
+    def test_encoding_set_ribinary(self, oscilloscope):
+        oscilloscope.data.encoding.set("ribinary")
+        oscilloscope.resource.write.assert_called_once_with("DATa:ENCDG RIBINARY")
 
-    def test_encoding_set_sribinary(self, osc):
-        osc.data.encoding.set("sribinary")
-        osc.resource.write.assert_called_once_with("DATa:ENCDG SRIBINARY")
+    def test_encoding_set_sribinary(self, oscilloscope):
+        oscilloscope.data.encoding.set("sribinary")
+        oscilloscope.resource.write.assert_called_once_with("DATa:ENCDG SRIBINARY")
 
-    def test_encoding_case_insensitive(self, osc):
-        osc.data.encoding.set("ASCII")
-        osc.resource.write.assert_called_once_with("DATa:ENCDG ASCI")
+    def test_encoding_case_insensitive(self, oscilloscope):
+        oscilloscope.data.encoding.set("ASCII")
+        oscilloscope.resource.write.assert_called_once_with("DATa:ENCDG ASCI")
 
-    def test_encoding_get(self, osc):
-        osc.data.encoding.get()
-        osc.resource.query.assert_called_once_with("DATa:ENCDG?")
+    def test_encoding_get(self, oscilloscope):
+        oscilloscope.data.encoding.get()
+        oscilloscope.resource.query.assert_called_once_with("DATa:ENCDG?")
 
-    def test_encoding_invalid(self, osc):
+    def test_encoding_invalid(self, oscilloscope    ):
         with pytest.raises(ValueError):
-            osc.data.encoding.set("notaformat")
+            oscilloscope.data.encoding.set("notaformat")
 
-    def test_start_set(self, osc):
-        osc.data.start.set(100)
-        osc.resource.write.assert_called_once_with("DATa:STARt 100")
+    def test_start_set(self, oscilloscope):
+        oscilloscope.data.start.set(100)
+        oscilloscope.resource.write.assert_called_once_with("DATa:STARt 100")
 
-    def test_start_get(self, osc):
-        osc.data.start.get()
-        osc.resource.query.assert_called_once_with("DATa:STARt?")
+    def test_start_get(self, oscilloscope):
+        oscilloscope.data.start.get()
+        oscilloscope.resource.query.assert_called_once_with("DATa:STARt?")
 
-    def test_start_invalid(self, osc):
+    def test_start_invalid(self, oscilloscope   ):
         with pytest.raises(ValueError):
-            osc.data.start.set(-1)
+            oscilloscope.data.start.set(-1)
 
-    def test_stop_set(self, osc):
-        osc.data.stop.set(1000)
-        osc.resource.write.assert_called_once_with("DATa:STOP 1000")
+    def test_stop_set(self, oscilloscope):
+        oscilloscope.data.stop.set(1000)
+        oscilloscope.resource.write.assert_called_once_with("DATa:STOP 1000")
 
-    def test_stop_get(self, osc):
-        osc.data.stop.get()
-        osc.resource.query.assert_called_once_with("DATa:STOP?")
+    def test_stop_get(self, oscilloscope):
+        oscilloscope.data.stop.get()
+        oscilloscope.resource.query.assert_called_once_with("DATa:STOP?")
 
-    def test_stop_invalid(self, osc):
+    def test_stop_invalid(self, oscilloscope):
         with pytest.raises(ValueError):
-            osc.data.stop.set(-1)
+            oscilloscope.data.stop.set(-1)
 
-    def test_get_curve(self, osc):
-        osc.data.get_curve()
-        osc.resource.query.assert_called_once_with("CURVe?")
-
-    def test_cannot_assign_source(self, osc):
+    def test_get_curve(self, oscilloscope):
+        oscilloscope.data.get_curve()
+        oscilloscope.resource.query_binary_values.assert_called_once_with(
+            "CURVe?", datatype='h', is_big_endian=True
+        )
+    def test_cannot_assign_source(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.data.source = 1
+            oscilloscope.data.source = 1
 
-    def test_cannot_assign_data_width(self, osc):
+    def test_cannot_assign_data_width(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.data.data_width = 2
+            oscilloscope.data.data_width = 2
     
-    def test_cannot_set_getonly(self, osc):
+    def test_cannot_set_getonly(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.data.x_increment.set(1)
+            oscilloscope.data.x_increment.set(1)
 
 class TestHorizontal:
 
-    def test_scale_set(self, osc):
-        osc.horizontal.scale.set(1)
-        osc.resource.write.assert_called_once_with("HORizontal:SCAle 1")
+    def test_scale_set(self, oscilloscope):
+        oscilloscope.horizontal.scale.set(1)
+        oscilloscope.resource.write.assert_called_once_with("HORizontal:SCAle 1")
 
-    def test_scale_get(self, osc):
-        osc.horizontal.scale.get()
-        osc.resource.query.assert_called_once_with("HORizontal:SCAle?")
+    def test_scale_get(self, oscilloscope):
+        oscilloscope.horizontal.scale.get()
+        oscilloscope.resource.query.assert_called_once_with("HORizontal:SCAle?")
 
-    def test_scale_invalid_zero(self, osc):
+    def test_scale_invalid_zero(self, oscilloscope):
         with pytest.raises(ValueError):
-            osc.horizontal.scale.set(0)
+            oscilloscope.horizontal.scale.set(0)
 
-    def test_scale_invalid_negative(self, osc):
+    def test_scale_invalid_negative(self, oscilloscope):
         with pytest.raises(ValueError):
-            osc.horizontal.scale.set(-1)
+            oscilloscope.horizontal.scale.set(-1)
 
-    def test_scale_invalid_float(self, osc):
+    def test_scale_invalid_float(self, oscilloscope):
         with pytest.raises(ValueError):
-            osc.horizontal.scale.set(1.5)
+            oscilloscope.horizontal.scale.set(1.5)
 
-    def test_scale_invalid_string(self, osc):
+    def test_scale_invalid_string(self, oscilloscope):
         with pytest.raises(ValueError):
-            osc.horizontal.scale.set("fast")
+            oscilloscope.horizontal.scale.set("fast")
 
-    def test_position_set(self, osc):
-        osc.horizontal.position.set(10)
-        osc.resource.write.assert_called_once_with("HORIZONTAL:POSITION 10")
+    def test_position_set(self, oscilloscope):
+        oscilloscope.horizontal.position.set(10)
+        oscilloscope.resource.write.assert_called_once_with("HORIZONTAL:POSITION 10")
 
-    def test_position_set_negative(self, osc):
-        osc.horizontal.position.set(-10)
-        osc.resource.write.assert_called_once_with("HORIZONTAL:POSITION -10")
+    def test_position_set_negative(self, oscilloscope):
+        oscilloscope.horizontal.position.set(-10)
+        oscilloscope.resource.write.assert_called_once_with("HORIZONTAL:POSITION -10")
 
-    def test_position_get(self, osc):
-        osc.horizontal.position.get()
-        osc.resource.query.assert_called_once_with("HORizontal:POSition?")
+    def test_position_get(self, oscilloscope):
+        oscilloscope.horizontal.position.get()
+        oscilloscope.resource.query.assert_called_once_with("HORizontal:POSition?")
 
-    def test_position_invalid_float(self, osc):
+    def test_position_invalid_float(self, oscilloscope):
         with pytest.raises(Exception):
-            osc.horizontal.position.set(1.5)
+            oscilloscope.horizontal.position.set(1.5)
 
-    def test_position_invalid_string(self, osc):
+    def test_position_invalid_string(self, oscilloscope ):
         with pytest.raises(Exception):
-            osc.horizontal.position.set("left")
+            oscilloscope.horizontal.position.set("left")
 
-    def test_settings_get(self, osc):
-        osc.horizontal.settings.get()
-        osc.resource.query.assert_called_once_with("HORizontal?")
+    def test_settings_get(self, oscilloscope):
+        oscilloscope.horizontal.settings.get()
+        oscilloscope.resource.query.assert_called_once_with("HORizontal?")
 
-    def test_settings_no_setter(self, osc):
+    def test_settings_no_setter(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.horizontal.settings.set(1)
+            oscilloscope.horizontal.settings.set(1)
 
-    def test_cannot_assign_scale(self, osc):
+    def test_cannot_assign_scale(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.horizontal.scale = 1
+            oscilloscope.horizontal.scale = 1
 
-    def test_cannot_assign_position(self, osc):
+    def test_cannot_assign_position(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.horizontal.position = 10
+            oscilloscope.horizontal.position = 10
 
-    def test_cannot_assign_settings(self, osc):
+    def test_cannot_assign_settings(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.horizontal.settings = "something"
+            oscilloscope.horizontal.settings = "something"
 
 class TestAcquire:
-    def test_params_get(self, osc):
-        osc.acquire.params.get()
-        osc.resource.query.assert_called_once_with("ACQuire?")
+    def test_params_get(self, oscilloscope):
+        oscilloscope.acquire.params.get()
+        oscilloscope.resource.query.assert_called_once_with("ACQuire?")
 
-    def test_mode_set_normal(self, osc):
-        osc.acquire.mode.set("normal")
-        osc.resource.write.assert_called_once_with("ACQuire:MODE NORMal")
+    def test_mode_set_normal(self, oscilloscope):
+        oscilloscope.acquire.mode.set("normal")
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:MODE NORMal")
 
-    def test_mode_set_peak(self, osc):
-        osc.acquire.mode.set("peak")
-        osc.resource.write.assert_called_once_with("ACQuire:MODE PEAK")
+    def test_mode_set_peak(self, oscilloscope):
+        oscilloscope.acquire.mode.set("peak")
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:MODE PEAK")
 
-    def test_mode_set_average(self, osc):
-        osc.acquire.mode.set("average")
-        osc.resource.write.assert_called_once_with("ACQuire:MODE AVErage")
+    def test_mode_set_average(self, oscilloscope):
+        oscilloscope.acquire.mode.set("average")
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:MODE AVErage")
 
-    def test_mode_set_envelope(self, osc):
-        osc.acquire.mode.set("envelope")
-        osc.resource.write.assert_called_once_with("ACQuire:MODE ENVelope")
+    def test_mode_set_envelope(self, oscilloscope):
+        oscilloscope.acquire.mode.set("envelope")
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:MODE ENVelope")
 
-    def test_mode_set_case_insensitive(self, osc):
-        osc.acquire.mode.set("NORMAL")
-        osc.resource.write.assert_called_once_with("ACQuire:MODE NORMal")
+    def test_mode_set_case_insensitive(self, oscilloscope):
+        oscilloscope.acquire.mode.set("NORMAL")
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:MODE NORMal")
 
-    def test_mode_set_invalid(self, osc):
+    def test_mode_set_invalid(self, oscilloscope):
         with pytest.raises(Exception):
-            osc.acquire.mode.set("invalid")
+            oscilloscope.acquire.mode.set("invalid")
 
-    def test_number_get(self, osc):
-        osc.acquire.number.get()
-        osc.resource.query.assert_called_once_with("ACQuire:NUMACq?")
+    def test_number_get(self, oscilloscope):
+        oscilloscope.acquire.number.get()
+        oscilloscope.resource.query.assert_called_once_with("ACQuire:NUMACq?")
 
-    def test_number_set(self, osc):
-        osc.acquire.number.set(10)
-        osc.resource.write.assert_called_once_with("ACQuire:NUMACq 10")
+    def test_number_set(self, oscilloscope):
+        oscilloscope.acquire.number.set(10)
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:NUMACq 10")
 
-    def test_number_env_set(self, osc):
-        osc.acquire.number_env.set(10)
-        osc.resource.write.assert_called_once_with("ACQuire:NUMACq ENVelope 10")
+    def test_number_env_set(self, oscilloscope):
+        oscilloscope.acquire.number_env.set(10)
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:NUMACq ENVelope 10")
 
-    def test_state_set_on(self, osc):
-        osc.acquire.state.set(1)
-        osc.resource.write.assert_called_once_with("ACQuire:STATE ON")
+    def test_state_set_on(self, oscilloscope):
+        oscilloscope.acquire.state.set(1)
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:STATE ON")
 
-    def test_state_set_off(self, osc):
-        osc.acquire.state.set(0)
-        osc.resource.write.assert_called_once_with("ACQuire:STATE OFF")
+    def test_state_set_off(self, oscilloscope):
+        oscilloscope.acquire.state.set(0)
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:STATE OFF")
 
-    def test_state_set_invalid(self, osc):
+    def test_state_set_invalid(self, oscilloscope):
         with pytest.raises(Exception):
-            osc.acquire.state.set(2)
+            oscilloscope.acquire.state.set(2)
 
-    def test_stop_after_set_runstop(self, osc):
-        osc.acquire.stop_after.set("runstop")
-        osc.resource.write.assert_called_once_with("ACQuire:STOPAfter RUNSTop")
+    def test_stop_after_set_runstop(self, oscilloscope):
+        oscilloscope.acquire.stop_after.set("runstop")
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:STOPAfter RUNSTop")
 
-    def test_stop_after_set_sequence(self, osc):
-        osc.acquire.stop_after.set("sequence")
-        osc.resource.write.assert_called_once_with("ACQuire:STOPAfter SEQUENCE")
+    def test_stop_after_set_sequence(self, oscilloscope):
+        oscilloscope.acquire.stop_after.set("sequence")
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:STOPAfter SEQUENCE")
 
-    def test_stop_after_set_case_insensitive(self, osc):
-        osc.acquire.stop_after.set("RUNSTOP")
-        osc.resource.write.assert_called_once_with("ACQuire:STOPAfter RUNSTop")
+    def test_stop_after_set_case_insensitive(self, oscilloscope):
+        oscilloscope.acquire.stop_after.set("RUNSTOP")
+        oscilloscope.resource.write.assert_called_once_with("ACQuire:STOPAfter RUNSTop")
 
-    def test_stop_after_set_invalid(self, osc):
+    def test_stop_after_set_invalid(self, oscilloscope  ):
         with pytest.raises(Exception):
-            osc.acquire.stop_after.set("invalid")
+            oscilloscope.acquire.stop_after.set("invalid")
 
-    def test_cannot_assign_params(self, osc):
+    def test_cannot_assign_params(self, oscilloscope    ):
         with pytest.raises(AttributeError):
-            osc.acquire.params = "something"
+            oscilloscope.acquire.params = "something"
 
-    def test_cannot_assign_mode(self, osc):
+    def test_cannot_assign_mode(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.acquire.mode = "normal"
+            oscilloscope.acquire.mode = "normal"
 
-    def test_cannot_assign_number(self, osc):
+    def test_cannot_assign_number(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.acquire.number = 10
+            oscilloscope.acquire.number = 10
 
-    def test_cannot_assign_state(self, osc):
+    def test_cannot_assign_state(self, oscilloscope):
         with pytest.raises(AttributeError):
-            osc.acquire.state = 1
+            oscilloscope.acquire.state = 1
 
 class TestDisplay:
-    def test_clear_menu(self, osc):
-        osc.display.clear_menu()
-        osc.resource.write.assert_called_once_with("CLEARMenu")
+    def test_clear_menu(self, oscilloscope):
+        oscilloscope.display.clear_menu()
+        oscilloscope.resource.write.assert_called_once_with("CLEARMenu")

@@ -48,8 +48,8 @@ class Horizontal:
         args:            
             value (float): The horizontal scale to set in seconds per division. Must be a positive number
         """
-        if value <= 0:
-            raise ValueError("Scale must be positive")
+        if not isinstance(value, int) or value <= 0:
+            raise ValueError("Scale must be positive integer")
         self._inst.write(f"HORizontal:SCAle {value}")
     
     def _get_position(self):
