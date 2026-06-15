@@ -1,9 +1,0 @@
-Name,Current,Voltage (ideal),Voltage (real),Type
-w_neg_NI,20n,525m,496m,ntype
-bistab_slwup,10p,1.5,1.5,ptype
-w_neg2_NI,200p,332m,307m,ntype
-bistab_slwdw,10p,217m,193m,ntype
-pre_trace_thr_PI,30n,1.17,1.21,ptype
-bias_WTA_NI,10n,493m,465m,ntype
-bistab_thr_VI,,700m,699m,voltage
-OpAmp_bias_NI,10n,493m,465m,ntype

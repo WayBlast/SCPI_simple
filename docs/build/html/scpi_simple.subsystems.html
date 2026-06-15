@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>scpi_simple.subsystems package &#8212; SCPI_simple  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="scpi_simple.tests package" href="scpi_simple.tests.html" />
+    <link rel="prev" title="scpi_simple.instruments package" href="scpi_simple.instruments.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="scpi-simple-subsystems-package">
+<h1>scpi_simple.subsystems package<a class="headerlink" href="#scpi-simple-subsystems-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-scpi_simple.subsystems.acquire">
+<span id="scpi-simple-subsystems-acquire-module"></span><h2>scpi_simple.subsystems.acquire module<a class="headerlink" href="#module-scpi_simple.subsystems.acquire" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.acquire.Acquire">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scpi_simple.subsystems.acquire.</span></span><span class="sig-name descname"><span class="pre">Acquire</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/acquire.html#Acquire"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.acquire.Acquire" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Acquire subsystem</p>
+<p>For the configuration and retrieval of data acquisition settings on the oscilloscope.
+This includes setting the acquisition mode, number of acquisitions, and controlling the acquisition state.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.acquire.Acquire.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.acquire.Acquire.mode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.acquire.Acquire.number">
+<span class="sig-name descname"><span class="pre">number</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.acquire.Acquire.number" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.acquire.Acquire.number_env">
+<span class="sig-name descname"><span class="pre">number_env</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.acquire.Acquire.number_env" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.acquire.Acquire.params">
+<span class="sig-name descname"><span class="pre">params</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.acquire.Acquire.params" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.acquire.Acquire.state">
+<span class="sig-name descname"><span class="pre">state</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.acquire.Acquire.state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.acquire.Acquire.stop_after">
+<span class="sig-name descname"><span class="pre">stop_after</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.acquire.Acquire.stop_after" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scpi_simple.subsystems.apply">
+<span id="scpi-simple-subsystems-apply-module"></span><h2>scpi_simple.subsystems.apply module<a class="headerlink" href="#module-scpi_simple.subsystems.apply" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.apply.Apply">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scpi_simple.subsystems.apply.</span></span><span class="sig-name descname"><span class="pre">Apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/apply.html#Apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.apply.Apply" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Apply subsystem
+For setting the output voltage and current on the power supply as a unified command.
+This provides a convenient method for configuring the power supply with a single call, rather than setting voltage and current separately.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.apply.Apply.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/apply.html#Apply.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.apply.Apply.set" title="Link to this definition">¶</a></dt>
+<dd><p>Set the output voltage and current for the specified channel.
+:param channel: The channel to set.
+:type channel: str
+:param voltage: The voltage to set.
+:type voltage: float
+:param current: The current to set.
+:type current: float</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scpi_simple.subsystems.data">
+<span id="scpi-simple-subsystems-data-module"></span><h2>scpi_simple.subsystems.data module<a class="headerlink" href="#module-scpi_simple.subsystems.data" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scpi_simple.subsystems.data.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/data.html#Data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.data.Data" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Data subsystem for retrieving and setting data-related parameters on the instrument.
+This includes configuring the data source, encoding, data width, and retrieving waveform preamble information such as x increment and y scaling factors.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.data_width">
+<span class="sig-name descname"><span class="pre">data_width</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.data_width" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.encoding">
+<span class="sig-name descname"><span class="pre">encoding</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.encoding" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.get_curve">
+<span class="sig-name descname"><span class="pre">get_curve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/data.html#Data.get_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.data.Data.get_curve" title="Link to this definition">¶</a></dt>
+<dd><p>Query the waveform data points as python integers.</p>
+<p>Convert to voltage as follows:
+voltage = (raw - y_off) * y_mult + y_zero</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The raw waveform data points as integers, which can be converted to voltage values.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.source">
+<span class="sig-name descname"><span class="pre">source</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.start" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.stop" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.x_increment">
+<span class="sig-name descname"><span class="pre">x_increment</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.x_increment" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.x_zero">
+<span class="sig-name descname"><span class="pre">x_zero</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.x_zero" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.y_multiplier">
+<span class="sig-name descname"><span class="pre">y_multiplier</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.y_multiplier" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.y_offset">
+<span class="sig-name descname"><span class="pre">y_offset</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.y_offset" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.data.Data.y_zero">
+<span class="sig-name descname"><span class="pre">y_zero</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.data.Data.y_zero" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scpi_simple.subsystems.display">
+<span id="scpi-simple-subsystems-display-module"></span><h2>scpi_simple.subsystems.display module<a class="headerlink" href="#module-scpi_simple.subsystems.display" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.display.Display">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scpi_simple.subsystems.display.</span></span><span class="sig-name descname"><span class="pre">Display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/display.html#Display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.display.Display" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Subsystem for controlling display settings on the oscilloscope.</p>
+<p>Provides method for clearing the display</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.display.Display.clear_menu">
+<span class="sig-name descname"><span class="pre">clear_menu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/display.html#Display.clear_menu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.display.Display.clear_menu" title="Link to this definition">¶</a></dt>
+<dd><p>Clear the display menu on the oscilloscope. This can be used to remove any on-screen menus or overlays that may be present.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scpi_simple.subsystems.horizontal">
+<span id="scpi-simple-subsystems-horizontal-module"></span><h2>scpi_simple.subsystems.horizontal module<a class="headerlink" href="#module-scpi_simple.subsystems.horizontal" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.horizontal.Horizontal">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scpi_simple.subsystems.horizontal.</span></span><span class="sig-name descname"><span class="pre">Horizontal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/horizontal.html#Horizontal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.horizontal.Horizontal" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Subsystem for controlling horizontal settings on the oscilloscope.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.horizontal.Horizontal.position">
+<span class="sig-name descname"><span class="pre">position</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.horizontal.Horizontal.position" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.horizontal.Horizontal.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.horizontal.Horizontal.scale" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.horizontal.Horizontal.settings">
+<span class="sig-name descname"><span class="pre">settings</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.horizontal.Horizontal.settings" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scpi_simple.subsystems.output">
+<span id="scpi-simple-subsystems-output-module"></span><h2>scpi_simple.subsystems.output module<a class="headerlink" href="#module-scpi_simple.subsystems.output" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.output.Output">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scpi_simple.subsystems.output.</span></span><span class="sig-name descname"><span class="pre">Output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/output.html#Output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.output.Output" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Subsystem for controlling the output state of the instrument. This includes turning the output on or off and querying the current output state.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.output.Output.state">
+<span class="sig-name descname"><span class="pre">state</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.output.Output.state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scpi_simple.subsystems.setpoint">
+<span id="scpi-simple-subsystems-setpoint-module"></span><h2>scpi_simple.subsystems.setpoint module<a class="headerlink" href="#module-scpi_simple.subsystems.setpoint" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.setpoint.SetPoint">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scpi_simple.subsystems.setpoint.</span></span><span class="sig-name descname"><span class="pre">SetPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/setpoint.html#SetPoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.setpoint.SetPoint" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Subsystem for controlling the setpoint of a power supply.</p>
+<p>This includes setting and querying the voltage and current setpoints.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.setpoint.SetPoint.current">
+<span class="sig-name descname"><span class="pre">current</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.setpoint.SetPoint.current" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.setpoint.SetPoint.voltage">
+<span class="sig-name descname"><span class="pre">voltage</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="scpi_simple.instruments.html#scpi_simple.instruments.base.SCPIParameter" title="scpi_simple.instruments.base.SCPIParameter"><span class="pre">SCPIParameter</span></a></span><a class="headerlink" href="#scpi_simple.subsystems.setpoint.SetPoint.voltage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scpi_simple.subsystems.system">
+<span id="scpi-simple-subsystems-system-module"></span><h2>scpi_simple.subsystems.system module<a class="headerlink" href="#module-scpi_simple.subsystems.system" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.system.System">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scpi_simple.subsystems.system.</span></span><span class="sig-name descname"><span class="pre">System</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/system.html#System"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.system.System" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Subsystem for controlling system-level functions of the instrument, such as beeping.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scpi_simple.subsystems.system.System.beep">
+<span class="sig-name descname"><span class="pre">beep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scpi_simple/subsystems/system.html#System.beep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scpi_simple.subsystems.system.System.beep" title="Link to this definition">¶</a></dt>
+<dd><p>Trigger an immediate beep from the instrument. This can be used for audible notifications or alerts.</p>
+<p>Note: The availability and behavior of the beep function may depend on the specific instrument model and its configuration.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scpi_simple.subsystems">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-scpi_simple.subsystems" title="Link to this heading">¶</a></h2>
+<p>Subsystem modules for instrument control (acquire, data, display, etc.).</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">SCPI_simple</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">scpi_simple</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="scpi_simple.html">scpi_simple package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">scpi_simple</a><ul>
+  <li><a href="scpi_simple.html">scpi_simple package</a><ul>
+      <li>Previous: <a href="scpi_simple.instruments.html" title="previous chapter">scpi_simple.instruments package</a></li>
+      <li>Next: <a href="scpi_simple.tests.html" title="next chapter">scpi_simple.tests package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, s223946.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/scpi_simple.subsystems.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

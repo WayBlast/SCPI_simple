@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scpi_simple.subsystems.data &#8212; SCPI_simple  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for scpi_simple.subsystems.data</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">..instruments.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">SCPIParameter</span>
+
+<div class="viewcode-block" id="Data">
+<a class="viewcode-back" href="../../../scpi_simple.subsystems.html#scpi_simple.subsystems.data.Data">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Data</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Data subsystem for retrieving and setting data-related parameters on the instrument.</span>
+<span class="sd">    This includes configuring the data source, encoding, data width, and retrieving waveform preamble information such as x increment and y scaling factors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">source</span><span class="p">:</span>          <span class="n">SCPIParameter</span>
+    <span class="n">encoding</span><span class="p">:</span>        <span class="n">SCPIParameter</span>
+    <span class="n">data_width</span><span class="p">:</span>      <span class="n">SCPIParameter</span>
+    <span class="n">start</span><span class="p">:</span>           <span class="n">SCPIParameter</span>
+    <span class="n">stop</span><span class="p">:</span>            <span class="n">SCPIParameter</span>
+    <span class="n">x_increment</span><span class="p">:</span>     <span class="n">SCPIParameter</span>
+    <span class="n">x_zero</span><span class="p">:</span>          <span class="n">SCPIParameter</span>
+    <span class="n">y_multiplier</span><span class="p">:</span>   <span class="n">SCPIParameter</span>
+    <span class="n">y_offset</span><span class="p">:</span>        <span class="n">SCPIParameter</span>
+    <span class="n">y_zero</span><span class="p">:</span>          <span class="n">SCPIParameter</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">):</span>
+
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_inst&#39;</span><span class="p">,</span> <span class="n">instrument</span><span class="p">)</span>
+
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;source&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_source</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_source</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_encoding</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_encoding</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;data_width&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_data_width</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_data_width</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_start</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_start</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_stop</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_stop</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;channel_scale&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_channel_scale</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_channel_scale</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;x_increment&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_x_increment</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="kc">None</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;x_zero&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_x_zero</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="kc">None</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;y_multiplier&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_y_multiplier</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="kc">None</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;y_offset&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_y_offset</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="kc">None</span>
+        <span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;y_zero&#39;</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">(</span>
+            <span class="n">getter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_y_zero</span><span class="p">,</span>
+            <span class="n">setter</span><span class="o">=</span><span class="kc">None</span>
+        <span class="p">))</span>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">SCPIParameter</span><span class="p">):</span>
+            <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Cannot assign to &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; directly. Use .set() instead.&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the current data source channel.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The current data source channel number (1-4).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;DATa:SOURCE?&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Set the data source channel. Valid channels are 1-4, corresponding to CH1-CH4 on the oscilloscope.</span>
+
+<span class="sd">        args: </span>
+<span class="sd">            source (int):</span>
+<span class="sd">                The channel number to set as the data source. Must be an integer from 1 to 4.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">match</span> <span class="n">source</span><span class="p">:</span>
+            <span class="k">case</span> <span class="mi">1</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;DATa:SOURCE CH1&#39;</span><span class="p">)</span>
+            <span class="k">case</span> <span class="mi">2</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;DATa:SOURCE CH2&#39;</span><span class="p">)</span>
+            <span class="k">case</span> <span class="mi">3</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;DATa:SOURCE CH3&#39;</span><span class="p">)</span>
+            <span class="k">case</span> <span class="mi">4</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;DATa:SOURCE CH4&#39;</span><span class="p">)</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Channel </span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2"> not defined: Pick channel 1-4&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the current data encoding format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The current data encoding format, typically &#39;ASCII&#39;, &#39;RIBinary&#39; or &#39;SRIBinary&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;DATa:ENCDG?&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enc</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data encoding format. Valid encodings are &#39;ASCII&#39;, &#39;RIBinary&#39; and &#39;SRIBinary&#39;.</span>
+
+<span class="sd">        args:</span>
+<span class="sd">            enc (str): The data encoding format to set. Must be &#39;ASCII&#39;, &#39;R</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">match</span> <span class="n">enc</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">case</span> <span class="s2">&quot;ascii&quot;</span><span class="p">:</span>    <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;DATa:ENCDG ASCI&#39;</span><span class="p">)</span>
+            <span class="k">case</span> <span class="s2">&quot;ribinary&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;DATa:ENCDG RIBINARY&#39;</span><span class="p">)</span>
+            <span class="k">case</span> <span class="s2">&quot;sribinary&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;DATa:ENCDG SRIBINARY&#39;</span><span class="p">)</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Encoding &#39;</span><span class="si">{</span><span class="n">enc</span><span class="si">}</span><span class="s2">&#39; not defined - must be &#39;ASCII&#39;, &#39;RIBinary&#39; or &#39;SRIBinary&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_data_width</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the current data width in bytes per point.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The current data width in bytes per point, typically 1 or 2 depending on the encoding format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;DATa:WIDth?&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_data_width</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data width in bytes per point. Valid widths are typically 1 or 2, depending on the encoding format.</span>
+
+<span class="sd">        args:</span>
+<span class="sd">            width (int): The data width to set in bytes per point. Must be a positive</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Data width cannot be less than one byte per point&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DATa:WIDth </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the current data start point index.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The current data start point index, which is the index of the first data point.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;DATa:STARt?&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data start point index. This is the index of the first data point to retrieve when querying waveform data.</span>
+
+<span class="sd">        args:</span>
+<span class="sd">            start (int): The data start point index to set. Must be a non-negative integer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Data start cannot be before first point&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DATa:STARt </span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the current data stop point index.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The current data stop point index, which is the index of the last data point.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;DATa:STOP?&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data stop point index. This is the index of the last data point to retrieve when querying waveform data.</span>
+<span class="sd">        </span>
+<span class="sd">        args:            </span>
+<span class="sd">            stop (int): The data stop point index to set. Must be a non-negative integer and cannot be less than the start index.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">stop</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Data stop cannot be before first point&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DATa:STOP </span><span class="si">{</span><span class="n">stop</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_channel_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the scale factor for the specified channel. </span>
+
+<span class="sd">        args:</span>
+<span class="sd">            channel (int): The channel number to set the scale for. Must be an integer from 1 to 4.</span>
+<span class="sd">            scale (float): The scale factor to set for the channel. Must be a positive number representing volts per division.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">match</span> <span class="n">channel</span><span class="p">:</span>
+            <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">scale</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CH1:SCALE </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Data scale cannot be less than 0&quot;</span><span class="p">)</span>  
+            <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">scale</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CH2:SCALE </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Data scale cannot be less than 0&quot;</span><span class="p">)</span> 
+            <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">scale</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CH3:SCALE </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Data scale cannot be less than 0&quot;</span><span class="p">)</span> 
+            <span class="k">case</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">scale</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CH4:SCALE </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Data scale cannot be less than 0&quot;</span><span class="p">)</span> 
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Channel: </span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2"> not defined: Pick channel 1-4&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_channel_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the scale factor for the specified channel. </span>
+
+<span class="sd">        args:</span>
+<span class="sd">            channel (int): The channel number to query the scale for. Must be an integer from 1 to 4.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The scale factor for the specified channel.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">channel</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Channel: </span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2"> not defined: Pick channel 1-4&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CH</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s1">:SCALE?&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_x_increment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the x increment (time per sample) from the waveform preamble.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The x increment in seconds per sample, which can be used to convert sample indices to time values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;WFMPRE:XINCR?&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_x_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the x zero (starting time) from the waveform preamble.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The x zero in seconds, which is the timestamp of the first sample.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;WFMPRE:XZERO?&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_y_multiplier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the y multiplier (volts per ADC count) from the waveform preamble.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The y multiplier in volts per ADC count, which can be used to convert raw data points to voltage values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;WFMPRE:YMULT?&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_y_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the y offset (voltage offset) from the waveform preamble.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The y offset in ADC counts, which can be used to convert raw data points to voltage values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;WFMPRE:YOFF?&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_y_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the y zero (voltage zero) from the waveform preamble.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The y zero in volts, which is the voltage reference point for the waveform data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;WFMPRE:YZERO?&quot;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Data.get_curve">
+<a class="viewcode-back" href="../../../scpi_simple.subsystems.html#scpi_simple.subsystems.data.Data.get_curve">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_curve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the waveform data points as python integers.</span>
+<span class="sd">        </span>
+<span class="sd">        Convert to voltage as follows:</span>
+<span class="sd">        voltage = (raw - y_off) * y_mult + y_zero</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[int]: The raw waveform data points as integers, which can be converted to voltage values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst</span><span class="o">.</span><span class="n">query_binary_values</span><span class="p">(</span><span class="s1">&#39;CURVe?&#39;</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="n">is_big_endian</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">SCPI_simple</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">scpi_simple</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, s223946.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
